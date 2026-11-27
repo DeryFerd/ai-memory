@@ -11,6 +11,12 @@ version in [`docs/changelog/`](docs/changelog/):
 
 ## [Unreleased]
 
+### Fixed
+
+- Followed redirects only inside the configured origin when downloading the
+  local embedding model, matching every other provider client. The SHA-256
+  pin still protects the bytes; this closes the egress path.
+
 ## [3.6.4] - 2026-11-27
 
 ### Fixed
