@@ -92,7 +92,7 @@ version in [`docs/changelog/`](docs/changelog/):
 - Required `--confirm` for `delete-page`. Without it the command now prints
   the target and exits without sending a request, matching the other
   destructive CLI commands, so an accidental invocation no longer deletes a
-  page.
+  page ([#2538](https://github.com/akitaonrails/ai-memory/pull/2538))
 
 ## [3.6.4] - 2026-11-27
 
