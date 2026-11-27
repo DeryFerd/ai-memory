@@ -2450,6 +2450,10 @@ pub struct DeletePageArgs {
     /// (same heuristic write-page/read-page use).
     #[arg(long)]
     pub project: Option<String>,
+    /// Required to actually delete. Without it the command prints the target
+    /// and exits without sending a request, like purge-project/purge-session.
+    #[arg(long)]
+    pub confirm: bool,
 }
 
 /// Arguments for `reset`.

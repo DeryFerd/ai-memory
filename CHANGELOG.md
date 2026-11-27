@@ -89,6 +89,10 @@ version in [`docs/changelog/`](docs/changelog/):
   diagnostics for Antigravity CLI status line setup. (#2486)
 - Fixed Windows command rendering for the Antigravity CLI status line token
   observer by using the same path rendering as its lifecycle hooks. (#2486)
+- Required `--confirm` for `delete-page`. Without it the command now prints
+  the target and exits without sending a request, matching the other
+  destructive CLI commands, so an accidental invocation no longer deletes a
+  page.
 
 ## [3.6.4] - 2026-11-27
 

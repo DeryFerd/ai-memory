@@ -51,6 +51,20 @@ pub async fn run(config: &Config, args: DeletePageArgs) -> Result<()> {
     let (workspace, project) =
         super::resolve_scope(config, args.workspace.as_deref(), args.project.as_deref())?;
 
+    if !args.confirm {
+        bail!(
+            "{}",
+            i18n.format(
+                "cli-delete-page-delete-page-is-destructive-and-irreversible-re-run-with-confirm-to-proceed",
+                &[
+                    ("value0", workspace.to_string()),
+                    ("value1", project.to_string()),
+                    ("value2", args.path.clone())
+                ]
+            )
+        );
+    }
+
     let endpoint = ServerEndpoint::for_checkout(config).await?;
     let resp: DeletePageResponseBody = post_json(
         &endpoint,
@@ -90,7 +104,20 @@ mod tests {
             path: path.into(),
             workspace: None,
             project: project.map(str::to_string),
+            confirm: false,
         }
+    }
+
+    #[tokio::test]
+    async fn a_delete_without_confirm_is_refused_before_any_request() {
+        let config = Config::default();
+        let mut a = args("notes/example.md", Some("app"));
+        a.workspace = Some("default".into());
+        let error = run(&config, a).await.unwrap_err();
+        assert!(
+            error.to_string().contains("--confirm"),
+            "unexpected error: {error}"
+        );
     }
 
     #[tokio::test]
