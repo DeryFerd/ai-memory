@@ -15,7 +15,7 @@ version in [`docs/changelog/`](docs/changelog/):
 
 - Followed redirects only inside the configured origin when downloading the
   local embedding model, matching every other provider client. The SHA-256
-  pin still protects the bytes; this closes the egress path.
+  pin still protects the bytes; this closes the egress path ([#2535](https://github.com/akitaonrails/ai-memory/pull/2535))
 
 ## [3.6.4] - 2026-11-27
 
